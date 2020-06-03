@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ user.userName }} {% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container p-3">
+    <h1>Bonjour {{ user.userName }} !</h1>
+
+    <h3>Votre Profil : </h3>
+    <ul>
+        <li> Prénom : {{ user.firstName }} </li>
+        <li> Nom : {{ user.lastName }}</li>
+        <li> Nom d'utilisateur : {{ user.userName }}</li>
+        <li> Adresse mail : {{ user.mail }}</li>
+        <li> Téléphone : {{ user.phone }}</li>
+    </ul>
+    <a href="#" class="btn btn-info">Modifier profil</a href="#">
+</div>
+<hr>
+<div class="container row offset-3" >
+
+    <div class="cardcol-4">
+        <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">Nom de l'animal</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Chat/Chien : Race de l'animal</h6>
+            <p class="card-text">
+                <strong>Age</strong> : Age de l'animal <br>
+                <strong>box n°</strong> : numéro du box <br>
+                <strong>traitement hestetique</strong> : oui/non
+            </p>
+            <a href="#!" class="btn btn-primary">Voir les détails de l'animal</a>
+        </div>
+    </div>
+    <div class="card col-4">
+        <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">Nom de l'animal</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Chat/Chien : Race de l'animal</h6>
+            <p class="card-text">
+                <strong>Age</strong> : Age de l'animal <br>
+                <strong>box n°</strong> : numéro du box <br>
+                <strong>traitement hestetique</strong> : oui/non
+            </p>
+            <a href="#!" class="btn btn-primary">Voir les détails de l'animal</a>
+        </div>
+    </div>
+    <div class="col">
+        <a href="{{path('new_animal')}}" class="btn btn-success col-5 m-auto "> Faire une demande pour l'ajout d'un animal a la garderie</a>
+        <a href="#" class="btn btn-success col-3 m-auto "> Contactez l'agence</a>
+    </div>
+</div>
+    
+{% endblock %}

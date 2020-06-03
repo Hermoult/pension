@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compte{% endblock %}
+
+{% block body %}
+
+<div class="">
+    <h1>Bonjour {{ user.firstName }} !</h1>
+        Vous venez de créer un compte chez Pension animalière de Metz, félicitation !
+    <ul>
+        <h2>Voici vos informations de compte :</h2>
+        <li> Prénom : {{ user.firstName }} </li>
+        <li> Nom : {{ user.lastName }}</li>
+        <li> Nom d'utilisateur : {{ user.userName }}</li>
+        <li> Adresse mail : {{ user.mail }}</li>
+        <li> Téléphone : {{ user.phone }}</li>
+    </ul>
+    <h2>
+        Vous pouvez désormais vous connecter afin d'accéder a votre profil et aux divers fonctionnalités de notre site
+    </h2>
+    <h3>Have fun !</h3>
+</div>
+{% endblock %}

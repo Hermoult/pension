@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  <h1>Inscrire un animal</h1>
+
+
+  {{ form_start(forma) }}
+
+  {{ form_row(forma.type,{'label': 'type','attr': {'placeholder' : 'Votre prénom'}}) }}
+  {{ form_row(forma.race,{'label': 'race','attr': {'placeholder' : 'race de l\'animal'}}) }}
+  {{ form_row(forma.name,{'label': 'Nom','attr': {'placeholder' : 'Nom de l\'animal'}}) }}
+  {{ form_row(forma.age,{'label': 'Adresse mail','attr': {'placeholder' : 'Age de l\'animal'}})}}
+  {{ form_row(forma.photo,{'label': 'Photo'}) }}
+  {{ form_row(forma.estheticTreatment,{'label': 'Traitement hestetique'}) }}
+
+
+  <button type="submit" class="btn btn-success">
+    {% if editMode %}
+    Enregistrer
+    {% else %}
+    Demande de garde
+    {% endif %}
+  </button>
+  {{ form_end(forma) }}
+
+</div>
+
+{% endblock %}
