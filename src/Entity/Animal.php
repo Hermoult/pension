@@ -49,7 +49,7 @@ class Animal
 
     /**
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $box;
 

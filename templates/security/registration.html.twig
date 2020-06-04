@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="container">
-  <h1>Inscription</h1>
+  <h1 class="m-3">{% if editMode %}Modification du profil{% else %} Inscription{% endif %}</h1>
   
   
   {{ form_start(form) }}
@@ -15,8 +15,11 @@
   {{ form_row(form.password,{'label': 'Mot de passe','attr': {'placeholder' : '********'}}) }}
   {{ form_row(form.confirmPassword,{'label': 'Confirmation du mot de passe','attr': {'placeholder' : '********'}}) }}
   
-  <button type="submit" class="btn btn-success">Inscripion</button>
+  <button type="submit" class="btn btn-success">
+    Enregistrer
+  </button>
   {{ form_end(form) }}
+  
 </div>
   
   {% endblock %}

@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Animal;
 use App\Entity\User;
 use App\Form\NewAnimalType;
+use App\Repository\AnimalRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +29,7 @@ class PensionController extends AbstractController
     public function profil(UserInterface $user)
     {
         return $this->render('pension/profil.html.twig', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
     
@@ -67,13 +68,16 @@ class PensionController extends AbstractController
             }
             $animal->setUserIduser($user);
             $animal->setLocalisation(false);
+            
             $manager->persist($animal);
             $manager->flush();
-
+            dump($animal);
             return $this->redirectToRoute('show_animal', [
+                'animal' => $animal,
                 'id' => $animal->getId()
             ]);
         }
+        
         return $this->render("pension/new.html.twig", [
             'forma' => $forma->createView(),
             'editMode' => $animal->getId() !== null
@@ -81,11 +85,11 @@ class PensionController extends AbstractController
     }
 
     /**
-     * @Route ("/fiche/{id}", name="show_animal")
+     * @Route ("/animal/{id}", name="show_animal")
      */
-    public function showAnimal($id){
+    public function showAnimal(Animal $animal){
         return $this->render('pension/animal.html.twig', [
-            'animal'=> $id
+            'animal'=> $animal
         ]);
     }
 

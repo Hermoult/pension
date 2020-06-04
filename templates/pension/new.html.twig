@@ -10,16 +10,16 @@
   {{ form_row(forma.type,{'label': 'type','attr': {'placeholder' : 'Votre prénom'}}) }}
   {{ form_row(forma.race,{'label': 'race','attr': {'placeholder' : 'race de l\'animal'}}) }}
   {{ form_row(forma.name,{'label': 'Nom','attr': {'placeholder' : 'Nom de l\'animal'}}) }}
-  {{ form_row(forma.age,{'label': 'Adresse mail','attr': {'placeholder' : 'Age de l\'animal'}})}}
+  {{ form_row(forma.age,{'label': 'Age','attr': {'placeholder' : 'Age de l\'animal'}})}}
   {{ form_row(forma.photo,{'label': 'Photo'}) }}
   {{ form_row(forma.estheticTreatment,{'label': 'Traitement hestetique'}) }}
 
 
   <button type="submit" class="btn btn-success">
     {% if editMode %}
-    Enregistrer
+    Modifier informations
     {% else %}
-    Demande de garde
+    Enregistrer l'animal
     {% endif %}
   </button>
   {{ form_end(forma) }}

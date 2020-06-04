@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Animal;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,12 +20,7 @@ class NewAnimalType extends AbstractType
             ->add('photo', FileType::class, [
                 'required' => false
             ])
-            ->add('box')
             ->add('estheticTreatment')
-            ->add('save', SubmitType::class, [
-                'label'=> 'test'
-            ])
-
         ;
     }
 

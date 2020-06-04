@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome{% endblock %}</title>
-        <!-- <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css"> -->
+        <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -25,22 +25,19 @@
                     </li>
                     {% endif %}
                 </ul>
-                <form class="form-inline my-2 my-lg-0" action="{{path('security_login')}}" method="POST">
                 {% if not app.user %}
+                <form class="form-inline my-2 my-lg-0" action="{{path('security_login')}}" method="POST">
                     <div class="for-group">
                         <input class="form-control mr-sm-2" placeholder="Adress email..." required name="_username" type="text" class="form-control">
-                        
                         <input class="form-control mr-sm-2" placeholder="Mot de passe..." required name="_password" type="password" class="form-control">
-                        
-                        
-                        
                         <button class="btn btn-success my-2 my-sm-0" type="submit" class="btn btn-success">Connexion</button>
+                        
                         <a href="{{path ('security_registration') }}" class="btn btn-info"> Créer un compte</a>
                 </form>
                 {% else %}
-                        <a href="{{path ('security_logout') }}" class="btn btn-warning">
-                            Déconnexion
-                        </a>
+                <a href="{{path ('security_logout') }}" class="btn btn-warning">
+                    Déconnexion
+                </a>
                 {% endif %}
                 
             </div>

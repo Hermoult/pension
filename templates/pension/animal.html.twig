@@ -5,15 +5,22 @@
 {% block body %}
 
 <div class="container">
-  <h1>Bonjour!</h1>
-  Vous venez d'ajouter un animal dans notre pension animalière
-  <ul>
-    <h2>Voici ses infos :</h2>
-    {# <li> Type : {{ animal.type }} </li>
-    <li> Race : {{ animal.race }}</li>
-    <li> Nom  : {{ animal.name }}</li>
-    <li> Age : {{ animal.age }}</li>
-    <li> box : {{ animal.box }}</li> #}
-  </ul>
+  <h2 class="m-3">
+    Voici les informations de "{{animal.name}}"
+  </h2>
+  {% dump(animal) %}
+  <div class="card mt-3">
+    <img class="card-img-top" src="http://placehold.it/450x150" alt="Card image cap">
+    <div class="card-body">
+      <h4 class="card-title">{{ animal.name }}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{ animal.type}} : {{ animal.race }}</h6>
+      <p class="card-text">
+        <strong>Age</strong> : {{ animal.age }} ans <br>
+        <strong>traitement hestetique</strong> : oui/non
+      </p>
+      <a href="{{path('edit_animal', {id:animal.id})}}" class="btn btn-success">Modifier les infos</a>
+    </div>
+  </div>
+  <a href="{{path('profil')}}" class="btn btn-warning mt-3">Retour au profil</a>
 </div>
 {% endblock %}

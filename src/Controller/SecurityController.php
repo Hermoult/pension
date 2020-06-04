@@ -14,25 +14,32 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class SecurityController extends AbstractController
 {    
     /**
-     * registration
-     *
      * @Route ("/inscription", name="security_registration")
+     * @Route ("/profil/{id}/edit", name="profil_edit")
      */
-    public function registration(Request $request, EntityManagerInterface $manager,UserPasswordEncoderInterface $encoder) {
+    public function registration(Request $request, EntityManagerInterface $manager,UserPasswordEncoderInterface $encoder, User $user = null) {
 
+        if (!$user) {
         $user = new User;
-
+        }
+        
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+            if (!$user->getId()){
+                $user->setCreatedAt(new DateTime());
+                $user->setCreatedBy($user->getUserName());
+            }else{
+                $user->setUpdatedAt(new DateTime());
+                $user->setUpdatedBy($user->getUserName());
+            }
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
-            $user->setCreatedAt(new DateTime());
-            $user->setCreatedBy($user->getUserName());
-            $user->setAccreditation(1);
-            $manager->persist($user);
+                $user->setAccreditation(1);
+                $manager->persist($user);
             $manager->flush();
 
             return $this->render("security/index.html.twig", [
@@ -40,7 +47,8 @@ class SecurityController extends AbstractController
             ]);
         }
         return $this->render('security/registration.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'editMode' => $user->getId() !== null
         ]);
     }
     

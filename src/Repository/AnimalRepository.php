@@ -36,8 +36,8 @@ class AnimalRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Animal
+    
+    /* public function findOneBySomeField($value): ?Animal
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
@@ -45,6 +45,10 @@ class AnimalRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult()
         ;
+    } */
+
+    public function findById(Animal $animal, $id){
+
+
     }
-    */
 }
