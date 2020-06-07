@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {    
@@ -57,8 +58,12 @@ class SecurityController extends AbstractController
      *
      * @Route ("/connexion", name="security_login")
      */
-    public function login () {
-        return $this->render('pension/home.html.twig');
+    public function login (AuthenticationUtils $authenticationUtils) {
+        $error =$authenticationUtils->getLastAuthenticationError();
+        dump($error);
+        return $this->render('pension/home.html.twig', [
+            'error' => $error
+        ]);
     }
 
     /**

@@ -9,6 +9,8 @@
 </style>
 
 <div class="container p-3">
+
+    {% if app.user and user is defined and user.accreditation == 1 %}
     <h1>Bonjour {{ user.userName }} !</h1>
 
     <h3>Votre Profil : </h3>
@@ -20,6 +22,14 @@
         <li> Téléphone : {{ user.phone }}</li>
     </ul>
     <a  href={{path('profil_edit', {id:user.id})}} class="btn btn-info">Modifier profil</a>
+    <a href="{{path('message')}}" class="btn btn-success m-auto "> Contacter l'agence</a>
+        <a href="{{path('new_animal')}}" class="btn btn-success col-5 m-auto "> Faire une demande pour l'ajout d'un animal a la
+            garderie</a>
+    {% elseif app.user and user is defined and user.accreditation == 2 %}
+            <h3>Accès à profil Admin</h3>
+    {% endif %}
+
+
 </div>
 <hr>
 
@@ -39,14 +49,26 @@
                 <strong>traitement esthetique</strong> : {{animals.estheticTreatment}}
             </p>
             <a href="{{ path('show_animal',{id:animals.id})}}" class="btn btn-primary">Voir les détails de l'animal</a>
+            <p>
+                <a class="btn btn-success mt-1" data-toggle="collapse" href="#collapseGeoloc" aria-expanded="false"
+                    aria-controls="collapseGeoloc">
+                    Afficher la géolocalisation
+                </a>
+                <button class="btn btn-success mt-1" type="button" data-toggle="collapse" data-target="#collapseBox"
+                    aria-expanded="false" aria-controls="collapseBox">
+                    Afficher la caméra box
+                </button>
+            </p>
+            
         </div>
     </div>
         {% endfor %}
-
-    <div class="col">
-        <a href="{{path('new_animal')}}" class="btn btn-success col-5 m-auto "> Faire une demande pour l'ajout d'un animal a la garderie</a>
-        <a href="#" class="btn btn-success col-3 m-auto "> Contactez l'agence</a>
-    </div>
+</div>
+<div class="collapse" id="collapseGeoloc">
+    <img src={{ '/img/animalPosition.png' }} alt="image de la position" class="offset-3">
+</div>
+<div class="collapse" id="collapseBox">
+    <img src={{ 'img/animalBox.jpg' }} alt="image de l'animal" class="offset-2">
 </div>
     
 {% endblock %}

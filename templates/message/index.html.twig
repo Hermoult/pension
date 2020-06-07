@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1 class="mt-3 mb-4">Envoyer un messsage</h1>
+
+
+    {{ form_start(form) }}
+
+    {{ form_row(form.subject,{'label': 'Objet de la demande'}) }}
+    {{ form_row(form.animal_idanimal,{'label': 'Animal concerné par la demande (facultatif)'}) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.dateAppoitment,{'label': 'Date de rendez-vous souhaité'})}}
+        </div>
+    </div>
+    {{ form_row(form.content,{'label': 'Contenu','attr': {'placeholder' : 'Contenu du message'}}) }}
+
+
+    <button type="submit" class="btn btn-success">
+        Envoyer la demande
+    </button>
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

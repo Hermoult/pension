@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
@@ -23,7 +25,7 @@ class Message
     private $subject;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", length=255)
      */
     private $content;
 
@@ -32,40 +34,18 @@ class Message
      */
     private $sender;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $receiver;
 
     /**
      * @ORM\Column(type="date")
      */
     private $dateSending;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $askAppoitment;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
     private $dateAppoitment;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $askEstheticTreatment;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $askHealth;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $askGeoloc;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
@@ -77,6 +57,11 @@ class Message
      * @ORM\ManyToOne(targetEntity=Animal::class, inversedBy="messages")
      */
     private $animal_idanimal;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateVisio;
 
 
 
@@ -121,17 +106,6 @@ class Message
         return $this;
     }
 
-    public function getReceiver(): ?string
-    {
-        return $this->receiver;
-    }
-
-    public function setReceiver(string $receiver): self
-    {
-        $this->receiver = $receiver;
-
-        return $this;
-    }
 
     public function getDateSending(): ?\DateTimeInterface
     {
@@ -145,17 +119,6 @@ class Message
         return $this;
     }
 
-    public function getAskAppoitment(): ?bool
-    {
-        return $this->askAppoitment;
-    }
-
-    public function setAskAppoitment(?bool $askAppoitment): self
-    {
-        $this->askAppoitment = $askAppoitment;
-
-        return $this;
-    }
 
     public function getDateAppoitment(): ?\DateTimeInterface
     {
@@ -165,42 +128,6 @@ class Message
     public function setDateAppoitment(?\DateTimeInterface $dateAppoitment): self
     {
         $this->dateAppoitment = $dateAppoitment;
-
-        return $this;
-    }
-
-    public function getAskEstheticTreatment(): ?bool
-    {
-        return $this->askEstheticTreatment;
-    }
-
-    public function setAskEstheticTreatment(?bool $askEstheticTreatment): self
-    {
-        $this->askEstheticTreatment = $askEstheticTreatment;
-
-        return $this;
-    }
-
-    public function getAskHealth(): ?bool
-    {
-        return $this->askHealth;
-    }
-
-    public function setAskHealth(bool $askHealth): self
-    {
-        $this->askHealth = $askHealth;
-
-        return $this;
-    }
-
-    public function getAskGeoloc(): ?bool
-    {
-        return $this->askGeoloc;
-    }
-
-    public function setAskGeoloc(?bool $askGeoloc): self
-    {
-        $this->askGeoloc = $askGeoloc;
 
         return $this;
     }
@@ -225,6 +152,18 @@ class Message
     public function setAnimalIdanimal(?Animal $animal_idanimal): self
     {
         $this->animal_idanimal = $animal_idanimal;
+
+        return $this;
+    }
+
+    public function getDateVisio(): ?\DateTimeInterface
+    {
+        return $this->dateVisio;
+    }
+
+    public function setDateVisio(?\DateTimeInterface $dateVisio): self
+    {
+        $this->dateVisio = $dateVisio;
 
         return $this;
     }

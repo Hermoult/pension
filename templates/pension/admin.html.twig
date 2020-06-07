@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Centre de gestion de l'{{ user.userName }} {% endblock %}
+
+{% block body %}
+
+<div class="container text-center p-2">
+  <h1 class="text-success font-weight-bold m-4">Centre de gestion de l'{{ user.userName }} </h1>
+</div>
+
+<h2>Tous les animaux présents à la pension</h2>
+<div class="row offset-1">
+  {% for animal in animals %}
+    <div class="card col-md-2">
+      <img class="card-img-top" src="http://placehold.it/350x150" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title"> {{animal.name}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{animal.type}} : {{animal.race}}</h6>
+        <p class="card-text">
+          <strong>Age</strong> : {{animal.age}} <br>
+          <strong>box n°</strong> : {{animal.box}} <br>
+          <strong>traitement esthetique</strong> : {{animal.estheticTreatment}}
+        </p>
+        <a href="{{ path('show_animal',{id:animal.id})}}" class="btn btn-primary">Voir les détails de l'animal</a>
+        <p>
+          <a class="btn btn-success mt-1" data-toggle="collapse" href="#collapseGeoloc" aria-expanded="false"
+            aria-controls="collapseGeoloc">
+            Afficher la géolocalisation
+          </a>
+          <button class="btn btn-success mt-1" type="button" data-toggle="collapse" data-target="#collapseBox"
+            aria-expanded="false" aria-controls="collapseBox">
+            Afficher la caméra box
+          </button>
+        </p>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<h2 class="mt-3">Tous les messages la pension</h2>
+<div class="container row offset-1">
+  {% for message in messages %}
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>id</th>
+        <th>Sujet</th>
+        <th>Contenu</th>
+        <th>Client</th>
+        <th>Date d'envoie</th>
+        <th>Date de rdv</th>
+        <th>Date de visio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{message.id}}</td>
+        <td>{{message.subject}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.sender}}</td>
+        <td>{{message.dateSending | date('d-m-Y')}}</td>
+        <td>{{message.dateAppoitment | date('d-m-Y')}}</td>
+        <td>{{message.dateVisio | date('d-m-Y')}}</td>
+      </tr>
+    </tbody>
+  </table>
+  {% endfor %}
+</div>
+
+{% endblock %}

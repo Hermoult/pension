@@ -16,9 +16,29 @@
       <h6 class="card-subtitle mb-2 text-muted">{{ animal.type}} : {{ animal.race }}</h6>
       <p class="card-text">
         <strong>Age</strong> : {{ animal.age }} ans <br>
-        <strong>traitement hestetique</strong> : oui/non
       </p>
       <a href="{{path('edit_animal', {id:animal.id})}}" class="btn btn-success">Modifier les infos</a>
+      <p>
+        <a class="btn btn-success mt-1" data-toggle="collapse" href="#collapseGeoloc" aria-expanded="false"
+          aria-controls="collapseGeoloc">
+          Afficher la géolocalisation
+        </a>
+        <button class="btn btn-success mt-1" type="button" data-toggle="collapse" data-target="#collapseBox"
+          aria-expanded="false" aria-controls="collapseBox">
+          Afficher la caméra box
+        </button>
+      </p>
+      
+      </div>
+      </div>
+      
+      </div>
+      <div class="collapse" id="collapseGeoloc">
+        <img src={{ '/img/animalPosition.png' }} alt="image de la position" class="offset-3">
+      </div>
+      <div class="collapse" id="collapseBox">
+        <img src={{ 'img/animalBox.jpg' }} alt="image de l'animal" class="offset-2">
+      </div>
     </div>
   </div>
   <a href="{{path('profil')}}" class="btn btn-warning mt-3">Retour au profil</a>

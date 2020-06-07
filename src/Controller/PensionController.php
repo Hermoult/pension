@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use DateTime;
 use App\Entity\Animal;
-use App\Entity\User;
 use App\Form\NewAnimalType;
 use App\Repository\AnimalRepository;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +20,8 @@ class PensionController extends AbstractController
      */
     public function home()
     {
-        return $this->render ('pension/home.html.twig');
+        return $this->render ('pension/home.html.twig', [
+        ]);
     }
     
     /**
@@ -30,6 +31,23 @@ class PensionController extends AbstractController
     {
         return $this->render('pension/profil.html.twig', [
             'user' => $user,
+            'current_menu' => 'profil'
+        ]);
+    }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin(UserInterface $user, AnimalRepository $animals, MessageRepository $messages)
+    {
+        $animals = $animals->findAll();
+        $messages = $messages->findAll();
+
+        return $this->render('pension/admin.html.twig', [
+            'user' => $user,
+            'messages' => $messages,
+            'animals' => $animals,
+            'current_menu' => 'admin'
         ]);
     }
     
@@ -37,9 +55,11 @@ class PensionController extends AbstractController
     /**
      * @Route("/tarifs", name="tarifs")
      */
-    public function tarifs() 
+    public function tarifs(UserInterface $user) 
     {
-        return $this->render ('pension/tarifs.html.twig');
+        return $this->render ('pension/tarifs.html.twig', [
+            'current_menu' => 'tarifs',
+        ]);
     }
 
     /**
@@ -77,7 +97,7 @@ class PensionController extends AbstractController
                 'id' => $animal->getId()
             ]);
         }
-        
+
         return $this->render("pension/new.html.twig", [
             'forma' => $forma->createView(),
             'editMode' => $animal->getId() !== null
