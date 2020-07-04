@@ -27,12 +27,7 @@ class MessageType extends AbstractType
             ->add('dateAppoitment', DateType::class, [
                 'widget' => 'single_text'
             ])
-            ->add('animal_idanimal', ChoiceType::class, [
-                'choices' => [
-                    
-                    ]
-                ]
-            );
+            ->add('animal_idanimal');
     }
 
     public function configureOptions(OptionsResolver $resolver)
